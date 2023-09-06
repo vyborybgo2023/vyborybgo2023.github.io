@@ -1,1 +1,299 @@
-lox
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Название вашего сайта</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+        #personBlock {
+        display: none;
+        }
+      /* Медиа-запросы для адаптивности */
+      #logo-container 
+        { 
+            /* border: 2px solid rgb(21,66,133);*/
+            margin-top: 10px;
+        }
+    #dropdownList
+    {
+        display: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 30%;
+        max-height: 200px; /* Adjust the max height as needed */
+        overflow-y: auto;
+    }
+    #dropdownList li {
+        list-style-type: none;
+        cursor: pointer;
+    }
+    #contentBlock {
+        margin-top: 20px;
+    }
+    #userInput {
+                width: 100%;
+                padding: 10px;
+            }
+    .rectangle {
+      width: 100%;
+      height: 100px;
+      background-color: rgb(21,66,133);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    #personName, #personDescription, #Occupation,#numUIK,#TimeWork, #TimeChoose{
+      font-size: 30px ;
+    }
+    /* Introductory animation styles */
+.intro-animation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  font-size: 18px;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.hidden {
+  display: none;
+}
+
+  /* Tooltip for input field */
+  .tooltip-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip {
+    position: absolute;
+    bottom: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-100%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s; /* Adjusted transition duration */
+  }
+/* Стили для кнопок "Кнопка 1" и "Кнопка 2" */
+#button1,
+#button2 {
+  background-color: rgb(21, 66, 133);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px; /* Добавляем отступ снизу */
+}
+
+#button1:hover,
+#button2:hover {
+  background-color: #154285; /* Темнее для эффекта нажатия */
+}
+  .tooltip-container:hover .tooltip {
+    opacity: 1;
+  }
+      /* Стили для элементов <select> */
+select {
+  padding: 8px;
+  border: 1px solid rgb(21, 66, 133);
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  background-color: white;
+  color: rgb(21, 66, 133);
+  cursor: pointer;
+}
+
+/* Стили для скрытых <select> элементов */
+.hidden {
+  display: none;
+}
+      @media only screen and (max-width: 600px) {
+        #button1,
+  #button2 {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+        .tooltip {
+        bottom: -30px; /* Adjust this value as needed */
+        left: 50%;
+        transform: translateX(-50%);
+      }
+        .container {
+          flex-direction: column;
+        }
+        .logo, .content, .col {
+          flex: 100%;
+        }
+        #dropdownList li {
+        list-style-type: none;
+        cursor: pointer;
+        white-space: nowrap; /* Add this line to prevent line breaks */
+        }
+        #dropdownList
+        {
+          padding-left: 0;
+        }
+        /*.container {
+          flex-direction: column;
+        }
+        .content {
+          padding: 15px;
+        }
+        .rectangle {
+          height: auto;
+          text-align: center;
+        }
+        #dropdownList {
+          padding-left: 0;
+          text-align: center;
+        }
+        #personBlock {
+          padding: 15px;
+        }
+        #map {
+          height: 300px;
+        }
+        #ImageCandidate {
+        max-width: 100%;
+        height: auto;
+        }
+        .btn-block {
+          margin-bottom: 10px;
+        }
+        #personName, #personDescription, #Occupation {
+        font-size: 24px;
+        }*/
+        #logo-container {
+                margin-top: 20px;
+            }
+
+            #userInput {
+                width: 100%;
+                padding: 10px;
+            }
+
+           
+
+            #personBlock {
+                padding: 10px;
+            }
+
+            #ImageCandidate {
+                max-width: 100%;
+                height: auto;
+            }
+
+            #personName, #personDescription, #Occupation,#numUIK,#TimeWork, #TimeChoose {
+                font-size: 24px;
+            }
+
+            .btn-block {
+                margin-bottom: 10px;
+            }
+      }
+    </style>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=9b74a428-1a49-4fa8-8c6b-ededa57dcd11&lang=ru_RU"></script>
+</head>
+<body>
+    <div class="container mt-lg-4" >
+      <div class="d-flex justify-content-center" id="logo-container">
+        <img src="image\logo.jpg" class="img-fluid" alt="Логотип"/>
+      </div>
+      <div class="welcome-text">
+        <h3 class="text-center">Добро пожаловать на наш сайт!</h1>
+        <p class="text-center fs-4">
+          Здесь Вы сможете по адресу постоянной регистрации узнать информацию о кандидате, который ведёт наиболее активную работу в данном избирательном округе и построить маршрут до Вашего избирательного участка.
+        </p>
+      </div>
+      <div class="content">
+        <div class="rectangle">
+          <div class="tooltip-container">
+            <div class="tooltip">Введите сюда свой адрес, пример - 'Ногинск, ул. Декабристов, 81' </div>
+            <input type="text" id="userInput" placeholder="Введите ваш адрес здесь" id="inpt" size="100">
+          </div>
+        </div>
+        </div>
+        <ul id="dropdownList"></ul>
+        <div class="container">
+          <div class="container d-flex flex-column align-items-center mt-lg-4">
+            <p class="text-center fs-4">Другие варианты поиска:</p>
+            <div class="btn-group-vertical" role="group">
+              <button class="btn btn-primary btn-lg btn-block" id="button1">Поиск по адресу регистрации</button>
+              <button class="btn btn-primary btn-lg btn-block" id="button2">Поиск по номеру избирательного округа</button>
+            </div>
+            <div id="modal" class="hidden">
+              <select id="okrug">
+              </select>
+              <select id="nasPunkt"></select>
+              <select id="ulitsa" class="hidden"></select>
+              <select id="dom" class="hidden"></select>
+            </div>
+          </div>
+        <div id="contentBlock">
+          <div id="personBlock"><!--class="col-md-10"-->
+            <div class="row mx-n2">
+              <div class="col px-2">
+                <img src="img/1.jpeg" alt="Person's Image" class="rounded mx-auto d-block" style="max-width: 70%; height: auto" id="ImageCandidate">
+              </div>
+              <div class="col px-2" id='info-peson'>
+                <h2 id="personName"></h2>
+                <p id="personDescription"></p>
+                <p id="Occupation"></p>
+                <p id="numUIK"></p>
+                <p id="TimeChoose"></p>
+                <p id="TimeWork"></p>
+                <div class="container mt-5">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <!-- VK Button -->
+                      <a href="https://vk.com" target="_blank" class="btn btn-outline-primary btn-block" id="VK">Страница кандидата в ВКонтакте</a>
+                    </div>
+                    <div class="col-md-4">
+                      <!-- Telegram Button -->
+                      <a href="https://t.me" target="_blank" class="btn btn-outline-success btn-block" id="TG">Страница кандидата в Telegram</a>
+                    </div>
+                    <div class="col-md-4">
+                      <!-- OK Button -->
+                      <a href="https://ok.ru" target="_blank" class="btn btn-outline-warning btn-block" id="OK">Страница кандидата в Одноклассники</a>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 offset-md-3 mt-lg-5">
+                        <!-- Download Button -->
+                        <a href="path/to/your/file.pdf" target="_blank" download="Буклет_кандидата.pdf" class="btn btn-outline-danger btn-block" id="Buklet">Открыть буклет кандидата</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="container m-lg-3 border-3 border-bottom-0 border-danger">
+              <div id="map" style="width: 100%; height: 500px;"></div>
+            </div>
+          </div>
+        </div> 
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>  
+  </body>
+</html>
